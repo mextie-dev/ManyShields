@@ -1,0 +1,14 @@
+{
+  "parent":"fabricshieldlib:item/fabric_shield",
+  "textures":{
+    "shield":"manyshields:wooden_shield/wooden_shield"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "blocking": 1
+      },
+      "model": "manyshields:wooden_shield/wooden_shield_blocking"
+    }
+  ]
+}
