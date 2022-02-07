@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "manyshields",
+  "version": "${version}",
+  "name": "Many Shields",
+  "description": "Adds a variety of shields.",
+  "authors": [
+    "mextie"
+  ],
+  "contact": {
+    "website": "https://github.com/mextie-dev",
+    "repo": "https://github.com/mextie-dev/ManyShields"
+  },
+  "license": "MIT",
+  "icon": "assets/manyshields/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "manyshields.manyshields.client.ManyshieldsClient"
+    ],
+    "main": [
+      "manyshields.manyshields.Manyshields"
+    ]
+  },
+  "mixins": [
+    "manyshields.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.13.1",
+    "fabric": "*",
+    "minecraft": "1.18.1"
+  }
+}
