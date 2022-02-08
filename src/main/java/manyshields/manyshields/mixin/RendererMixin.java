@@ -23,9 +23,17 @@ import manyshields.manyshields.client.ManyshieldsClient;
 
 @Mixin(BuiltinModelItemRenderer.class)
 public class RendererMixin {
+
+    // wooden shield model
     private ShieldEntityModel modelWoodenShield;
     private static final SpriteIdentifier WOODEN_SHIELD_BASE = new SpriteIdentifier(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE, new Identifier("manyshields","entity/wooden_shield_base"));
     private static final SpriteIdentifier WOODEN_SHIELD_BASE_NO_PATTERN = new SpriteIdentifier(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE, new Identifier("manyshields","entity/wooden_shield_base_nopattern"));
+
+    // stone shield model
+    private ShieldEntityModel modelStoneShield;
+    private static final SpriteIdentifier STONE_SHIELD_BASE = new SpriteIdentifier(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE, new Identifier("manyshields","entity/stone_shield_base"));
+    private static final SpriteIdentifier STONE_SHIELD_BASE_NO_PATTERN = new SpriteIdentifier(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE, new Identifier("manyshields","entity/stone_shield_base_nopattern"));
+
 
     @Final
     @Shadow
@@ -33,16 +41,34 @@ public class RendererMixin {
 
 
     @Inject(method = "reload", at = @At("HEAD"))
+
+    // wooden shield
     private void setModelWoodenShield(CallbackInfo ci){
         this.modelWoodenShield = new ShieldEntityModel(this.entityModelLoader.getModelPart(ManyshieldsClient.WOODEN_SHIELD_MODEL_LAYER));
     }
 
+    @Inject(method = "reload", at = @At("HEAD"))
+
+    // stone shield
+    private void setModelStoneShield(CallbackInfo ci){
+        this.modelStoneShield = new ShieldEntityModel(this.entityModelLoader.getModelPart(ManyshieldsClient.STONE_SHIELD_MODEL_LAYER));
+    }
+
     @Inject(method = "render", at = @At("HEAD"))
     private void mainRender(ItemStack stack, ModelTransformation.Mode mode, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay, CallbackInfo ci) {
+
+        // wooden shield banner render
         if (stack.isOf(Manyshields.WOODEN_SHIELD)) {
             FabricShieldLibClient.renderBanner(stack, matrices, vertexConsumers, light, overlay, modelWoodenShield, WOODEN_SHIELD_BASE, WOODEN_SHIELD_BASE_NO_PATTERN);
             //The first five parameters are taken from the method, while the last 3 you provide yourself. You will provide the model, and then your 2 sprite identifiers in the order of ''//SHIELD_NAME//_BASE'' and then ''//SHIELD_NAME//_BASE_NOPATTERN.
         }
+
+        // stone shield banner render
+        if (stack.isOf(Manyshields.STONE_SHIELD)) {
+            FabricShieldLibClient.renderBanner(stack, matrices, vertexConsumers, light, overlay, modelStoneShield, STONE_SHIELD_BASE, STONE_SHIELD_BASE_NO_PATTERN);
+            //The first five parameters are taken from the method, while the last 3 you provide yourself. You will provide the model, and then your 2 sprite identifiers in the order of ''//SHIELD_NAME//_BASE'' and then ''//SHIELD_NAME//_BASE_NOPATTERN.
+        }
+
     }
 
 
