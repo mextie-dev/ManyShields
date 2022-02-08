@@ -34,24 +34,35 @@ public class RendererMixin {
     private static final SpriteIdentifier STONE_SHIELD_BASE = new SpriteIdentifier(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE, new Identifier("manyshields","entity/stone_shield_base"));
     private static final SpriteIdentifier STONE_SHIELD_BASE_NO_PATTERN = new SpriteIdentifier(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE, new Identifier("manyshields","entity/stone_shield_base_nopattern"));
 
+    // copper shield model
+    private ShieldEntityModel modelCopperShield;
+    private static final SpriteIdentifier COPPER_SHIELD_BASE = new SpriteIdentifier(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE, new Identifier("manyshields","entity/copper_shield_base"));
+    private static final SpriteIdentifier COPPER_SHIELD_BASE_NO_PATTERN = new SpriteIdentifier(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE, new Identifier("manyshields","entity/copper_shield_base_nopattern"));
+
 
     @Final
     @Shadow
     private EntityModelLoader entityModelLoader;
 
+    // wooden shield
 
     @Inject(method = "reload", at = @At("HEAD"))
-
-    // wooden shield
     private void setModelWoodenShield(CallbackInfo ci){
         this.modelWoodenShield = new ShieldEntityModel(this.entityModelLoader.getModelPart(ManyshieldsClient.WOODEN_SHIELD_MODEL_LAYER));
     }
 
-    @Inject(method = "reload", at = @At("HEAD"))
-
     // stone shield
+
+    @Inject(method = "reload", at = @At("HEAD"))
     private void setModelStoneShield(CallbackInfo ci){
         this.modelStoneShield = new ShieldEntityModel(this.entityModelLoader.getModelPart(ManyshieldsClient.STONE_SHIELD_MODEL_LAYER));
+    }
+
+    // copper shield
+
+    @Inject(method = "reload", at = @At("HEAD"))
+    private void setModelCopperShield(CallbackInfo ci){
+        this.modelCopperShield = new ShieldEntityModel(this.entityModelLoader.getModelPart(ManyshieldsClient.COPPER_SHIELD_MODEL_LAYER));
     }
 
     @Inject(method = "render", at = @At("HEAD"))
@@ -66,6 +77,12 @@ public class RendererMixin {
         // stone shield banner render
         if (stack.isOf(Manyshields.STONE_SHIELD)) {
             FabricShieldLibClient.renderBanner(stack, matrices, vertexConsumers, light, overlay, modelStoneShield, STONE_SHIELD_BASE, STONE_SHIELD_BASE_NO_PATTERN);
+            //The first five parameters are taken from the method, while the last 3 you provide yourself. You will provide the model, and then your 2 sprite identifiers in the order of ''//SHIELD_NAME//_BASE'' and then ''//SHIELD_NAME//_BASE_NOPATTERN.
+        }
+
+        // copper shield banner render
+        if (stack.isOf(Manyshields.COPPER_SHIELD)) {
+            FabricShieldLibClient.renderBanner(stack, matrices, vertexConsumers, light, overlay, modelCopperShield, COPPER_SHIELD_BASE, COPPER_SHIELD_BASE_NO_PATTERN);
             //The first five parameters are taken from the method, while the last 3 you provide yourself. You will provide the model, and then your 2 sprite identifiers in the order of ''//SHIELD_NAME//_BASE'' and then ''//SHIELD_NAME//_BASE_NOPATTERN.
         }
 

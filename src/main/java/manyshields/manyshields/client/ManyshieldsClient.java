@@ -19,6 +19,9 @@ public class ManyshieldsClient implements ClientModInitializer {
     // stone shield model layer
     public static final EntityModelLayer STONE_SHIELD_MODEL_LAYER = new EntityModelLayer(new Identifier("manyshields", "stone_shield"),"main");
 
+    // stone shield model layer
+    public static final EntityModelLayer COPPER_SHIELD_MODEL_LAYER = new EntityModelLayer(new Identifier("manyshields", "copper_shield"),"main");
+
 
     @Override
     public void onInitializeClient() {
@@ -35,6 +38,13 @@ public class ManyshieldsClient implements ClientModInitializer {
         ClientSpriteRegistryCallback.event(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE).register((atlasTexture, registry) -> {
             registry.register(new Identifier("manyshields", "entity/stone_shield_base"));
             registry.register(new Identifier("manyshields", "entity/stone_shield_base_nopattern"));
+        });
+
+        // copper shield registry för client
+        EntityModelLayerRegistry.registerModelLayer(COPPER_SHIELD_MODEL_LAYER, ShieldEntityModel::getTexturedModelData);
+        ClientSpriteRegistryCallback.event(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE).register((atlasTexture, registry) -> {
+            registry.register(new Identifier("manyshields", "entity/copper_shield_base"));
+            registry.register(new Identifier("manyshields", "entity/copper_shield_base_nopattern"));
         });
 
     }
