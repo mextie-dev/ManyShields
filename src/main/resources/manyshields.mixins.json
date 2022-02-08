@@ -4,8 +4,13 @@
   "package": "manyshields.manyshields.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "RendererMixin"
   ],
   "client": [
+    "RendererMixin"
+  ],
+  "server": [
+    "RendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1
