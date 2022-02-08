@@ -1,7 +1,7 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "WOW",
+    "WRW",
     "WWW",
     " W "
   ],
@@ -9,11 +9,12 @@
     "W": {
       "tag": "minecraft:planks"
     },
-    "O": {
+    "R": {
       "tag": "minecraft:logs"
     }
   },
   "result": {
-    "item": "manyshields:wooden_shield"
+    "item": "manyshields:wooden_shield",
+    "count": 1
   }
 }
