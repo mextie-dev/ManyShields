@@ -12,5 +12,6 @@ Will eventually include:
 - Explosive Shield - a shield made with TNT that will explode when hit, injuring both the attacker and the defender
 - Bone Shield - a brittle shield that, when held, will make skeletons passive
 - Unbreakable Shield - a very expensive shield that is unbreakable, for late-game when you can't be bothered to keep crafting shields.
+- and likely many more
 
 feel free to use in your modpack or whatever, just please send me the modpack link when it's out so I can play it, thanks
