@@ -22,18 +22,27 @@ public class Manyshields implements ModInitializer {
     // Gold Shield, 27 durability, very high cooldown, 16, very high enchantability, 23, uses gold ingot to repair
     public static final Item GOLD_SHIELD = new FabricBannerShieldItem(new FabricItemSettings().maxDamage(27).group(ItemGroup.COMBAT), 16, 23, Items.GOLD_INGOT);
 
+    // Gold Shield, 27 durability, very high cooldown, 16, very high enchantability, 23, uses gold ingot to repair
+    public static final Item DIAMOND_SHIELD = new FabricBannerShieldItem(new FabricItemSettings().maxDamage(27).group(ItemGroup.COMBAT), 16, 23, Items.DIAMOND);
+
 
     @Override
     public void onInitialize() {
 
         // wooden shield register
         Registry.register(Registry.ITEM, new Identifier("manyshields", "wooden_shield"), WOODEN_SHIELD);
+
         // stone shield register
         Registry.register(Registry.ITEM, new Identifier("manyshields", "stone_shield"), STONE_SHIELD);
+
         // copper shield register
         Registry.register(Registry.ITEM, new Identifier("manyshields", "copper_shield"), COPPER_SHIELD);
+
         // gold shield register
         Registry.register(Registry.ITEM, new Identifier("manyshields", "gold_shield"), GOLD_SHIELD);
+
+        // diamond shield register
+        Registry.register(Registry.ITEM, new Identifier("manyshields", "diamond_shield"), DIAMOND_SHIELD);
 
     }
 }

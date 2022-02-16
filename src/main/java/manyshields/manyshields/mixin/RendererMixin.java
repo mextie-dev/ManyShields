@@ -39,6 +39,16 @@ public class RendererMixin {
     private static final SpriteIdentifier COPPER_SHIELD_BASE = new SpriteIdentifier(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE, new Identifier("manyshields","entity/copper_shield_base"));
     private static final SpriteIdentifier COPPER_SHIELD_BASE_NO_PATTERN = new SpriteIdentifier(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE, new Identifier("manyshields","entity/copper_shield_base_nopattern"));
 
+    // gold shield model
+    private ShieldEntityModel modelGoldShield;
+    private static final SpriteIdentifier GOLD_SHIELD_BASE = new SpriteIdentifier(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE, new Identifier("manyshields","entity/gold_shield_base"));
+    private static final SpriteIdentifier GOLD_SHIELD_BASE_NO_PATTERN = new SpriteIdentifier(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE, new Identifier("manyshields","entity/gold_shield_base_nopattern"));
+
+    // diamond shield model
+    private ShieldEntityModel modelDiamondShield;
+    private static final SpriteIdentifier DIAMOND_SHIELD_BASE = new SpriteIdentifier(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE, new Identifier("manyshields","entity/diamond_shield_base"));
+    private static final SpriteIdentifier DIAMOND_SHIELD_BASE_NO_PATTERN = new SpriteIdentifier(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE, new Identifier("manyshields","entity/diamond_shield_base_nopattern"));
+
 
     @Final
     @Shadow
@@ -65,6 +75,20 @@ public class RendererMixin {
         this.modelCopperShield = new ShieldEntityModel(this.entityModelLoader.getModelPart(ManyshieldsClient.COPPER_SHIELD_MODEL_LAYER));
     }
 
+    // gold shield
+
+    @Inject(method = "reload", at = @At("HEAD"))
+    private void setModelGoldShield(CallbackInfo ci){
+        this.modelGoldShield = new ShieldEntityModel(this.entityModelLoader.getModelPart(ManyshieldsClient.GOLD_SHIELD_MODEL_LAYER));
+    }
+
+    // diamond shield
+
+    @Inject(method = "reload", at = @At("HEAD"))
+    private void setModelDiamondShield(CallbackInfo ci){
+        this.modelDiamondShield = new ShieldEntityModel(this.entityModelLoader.getModelPart(ManyshieldsClient.DIAMOND_SHIELD_MODEL_LAYER));
+    }
+
     @Inject(method = "render", at = @At("HEAD"))
     private void mainRender(ItemStack stack, ModelTransformation.Mode mode, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay, CallbackInfo ci) {
 
@@ -83,6 +107,18 @@ public class RendererMixin {
         // copper shield banner render
         if (stack.isOf(Manyshields.COPPER_SHIELD)) {
             FabricShieldLibClient.renderBanner(stack, matrices, vertexConsumers, light, overlay, modelCopperShield, COPPER_SHIELD_BASE, COPPER_SHIELD_BASE_NO_PATTERN);
+            //The first five parameters are taken from the method, while the last 3 you provide yourself. You will provide the model, and then your 2 sprite identifiers in the order of ''//SHIELD_NAME//_BASE'' and then ''//SHIELD_NAME//_BASE_NOPATTERN.
+        }
+
+        // gold shield banner render
+        if (stack.isOf(Manyshields.GOLD_SHIELD)) {
+            FabricShieldLibClient.renderBanner(stack, matrices, vertexConsumers, light, overlay, modelGoldShield, GOLD_SHIELD_BASE, GOLD_SHIELD_BASE_NO_PATTERN);
+            //The first five parameters are taken from the method, while the last 3 you provide yourself. You will provide the model, and then your 2 sprite identifiers in the order of ''//SHIELD_NAME//_BASE'' and then ''//SHIELD_NAME//_BASE_NOPATTERN.
+        }
+
+        // diamond shield banner render
+        if (stack.isOf(Manyshields.DIAMOND_SHIELD)) {
+            FabricShieldLibClient.renderBanner(stack, matrices, vertexConsumers, light, overlay, modelGoldShield, DIAMOND_SHIELD_BASE, DIAMOND_SHIELD_BASE_NO_PATTERN);
             //The first five parameters are taken from the method, while the last 3 you provide yourself. You will provide the model, and then your 2 sprite identifiers in the order of ''//SHIELD_NAME//_BASE'' and then ''//SHIELD_NAME//_BASE_NOPATTERN.
         }
 
